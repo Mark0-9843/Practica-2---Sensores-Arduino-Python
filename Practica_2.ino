@@ -2,16 +2,39 @@
 
 // ESTE CÓDIGO REALIZA UNA LECTURA DE SENSORES PARA POSTERIORMENTE MANDARLOS A PYTHON Y GUARDARLOS EN UN ARCHIVO CSV.
 
-// 25 / 03 / 2025 - V. 1. 0. 0 - INTEGRACIÓN DE SENSORES Y PROCESAMIENTO DE DATOS CON ARDUINO-PYTHON.
+// 25 / 03 / 2025 - V. 2. 0. 0 - INTEGRACIÓN DE SENSORES Y PROCESAMIENTO DE DATOS CON ARDUINO-PYTHON.
+
+#include <DHT.h>
+
+#define DHTPIN 3       // Pin digital donde está conectado el DHT11
+#define DHTTYPE DHT11  // Definir el tipo de sensor DHT
+
+DHT dht(DHTPIN, DHTTYPE);
+
+const int potPin = A0; // Pin analógico donde está conectado el potenciómetro
 
 void setup() {
-  Serial.begin(9600); // Inicia comunicación serial a 9600 baudios
+    Serial.begin(9600);
+    dht.begin();
 }
 
 void loop() {
-  // Simula lectura de temperatura (ejemplo con sensor LM35)
-  float temperatura = analogRead(A0) * 0.488; // Conversión a grados Celsius
-  Serial.print("TEMP:"); // Encabezado para identificar el dato
-  Serial.println(temperatura); // Envía el valor por serial
-  delay(1000); // Espera 1 segundo entre lecturas
+    // Leer el valor del potenciómetro
+    int valor_pot = analogRead(potPin);
+    float voltaje = valor_pot * (5.0 / 1023.0); // Convertir a voltaje
+
+    // Leer la temperatura y la humedad del DHT11
+    float temperatura = dht.readTemperature(); // En grados Celsius
+    float humedad = dht.readHumidity();
+
+    // Enviar datos en formato CSV
+    Serial.print(valor_pot);
+    Serial.print(",");
+    Serial.print(voltaje);
+    Serial.print(",");
+    Serial.print(temperatura);
+    Serial.print(",");
+    Serial.println(humedad); // Salto de línea al final
+
+    delay(500); // Esperar medio segundo antes de la siguiente lectura
 }
