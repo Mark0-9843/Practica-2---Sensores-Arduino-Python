@@ -23,14 +23,14 @@ with open(ARCHIVO, mode="w", newline="") as file: : #Abre un archivo con nombre 
 
     try:
          # Bucle infinito para leer datos continuamente desde Arduino
-        while True:
+        while True: # Se ejecuta indefinidamente hasta que se interrumpa manualmente
             linea = arduino.readline().decode().strip()  # Leer línea y decodificar
-            if linea:
+            if linea: # Verificar que la línea no esté vacía
                 datos = linea.split(",")  # Separar valores por coma
                 if len(datos) == 4:  # Verificar que sean 4 valores
                     escribir.writerow(datos)  # Guardar en el CSV
-                    print("Datos guardados:", datos)
-    except KeyboardInterrupt:
-        print("\nPrograma terminado por el usuario.")
-    finally:
+                    print("Datos guardados:", datos) # Imprimir los datos guardados en la consola
+    except KeyboardInterrupt:  # Captura la interrupción del teclado (Ctrl + C)
+        print("\nPrograma terminado por el usuario.") # Mensaje de finalización
+    finally:   #  se asegura el cierre del puerto serial
         arduino.close()  # Cerrar el puerto serial
