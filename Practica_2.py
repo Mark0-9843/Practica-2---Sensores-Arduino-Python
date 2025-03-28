@@ -9,7 +9,7 @@ import csv  #se usa para leer y escribir archivos en formato CSV
 import time time  #proporciona funciones para manejar el tiempo y pausas en la ejecución del código.
 
 # Configurar el puerto serial 
-PUERTO_SERIAL = "COM3" #Se usa para establecer comunicación con dispositivos externos
+PUERTO_SERIAL = "COM3" 
 BAUD_RATE = 9600
 ARCHIVO = "datos_sensores.csv"
 
