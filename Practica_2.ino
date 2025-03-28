@@ -12,6 +12,8 @@
 DHT dht(DHTPIN, DHTTYPE);
 
 const int potPin = A0; // Pin analógico donde está conectado el potenciómetro
+const int sonidoPin = A1;
+
 
 void setup() {
     Serial.begin(9600); //Inicia la comunicación serie 
@@ -26,7 +28,9 @@ void loop() {
     // Leer la temperatura y la humedad del DHT11
     float temperatura = dht.readTemperature(); // En grados Celsius
     float humedad = dht.readHumidity();
-
+    
+    int valor_audio = analogRead(sonidoPin); // Leer el valor del sensor de sonido
+    
     // Enviar datos en formato CSV
     Serial.print(valor_pot);
     Serial.print(",");
@@ -34,7 +38,9 @@ void loop() {
     Serial.print(",");
     Serial.print(temperatura);
     Serial.print(",");
-    Serial.println(humedad); // Salto de línea al final
+    Serial.print(humedad);
+    Serial.print(",");
+    Serial.println(valor_audio); // Salto de línea al final
 
-    delay(500); // Esperar medio segundo antes de la siguiente lectura
+    delay(200); // Esperar medio segundo antes de la siguiente lectura
 }
