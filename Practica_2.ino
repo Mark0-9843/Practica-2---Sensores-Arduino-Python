@@ -4,7 +4,7 @@
 
 // 25 / 03 / 2025 - V. 2. 0. 0 - INTEGRACIÓN DE SENSORES Y PROCESAMIENTO DE DATOS CON ARDUINO-PYTHON.
 
-#include <DHT.h>
+#include <DHT.h> //incluye la libreria del sensor 
 
 #define DHTPIN 3       // Pin digital donde está conectado el DHT11
 #define DHTTYPE DHT11  // Definir el tipo de sensor DHT
@@ -14,8 +14,8 @@ DHT dht(DHTPIN, DHTTYPE);
 const int potPin = A0; // Pin analógico donde está conectado el potenciómetro
 
 void setup() {
-    Serial.begin(9600);
-    dht.begin();
+    Serial.begin(9600); //Inicia la comunicación serie 
+    dht.begin(); // pone en funcionamiento el sensor y habilitar la lectura de temperatura y humedad 
 }
 
 void loop() {
