@@ -33,13 +33,13 @@ void loop() {
     
     // Enviar datos en formato CSV
     Serial.print(valor_pot); // Imprime el valor del potenciómetro
-    Serial.print(",");
-    Serial.print(voltaje);
-    Serial.print(",");
-    Serial.print(temperatura);
-    Serial.print(",");
-    Serial.print(humedad);
-    Serial.print(",");
+    Serial.print(","); // Separador de datos
+    Serial.print(voltaje); // Imprime el voltaje calculado
+    Serial.print(","); // Separador de datos
+    Serial.print(temperatura); // Imprime la temperatura
+    Serial.print(","); // Separador de datos
+    Serial.print(humedad); // Imprime la humedad
+    Serial.print(","); // Separador de datos
     Serial.println(valor_audio); // Salto de línea al final
 
     delay(200); // Esperar medio segundo antes de la siguiente lectura
